@@ -10,4 +10,8 @@ Detecting the affectation state of the learner, their frequency of micro-sleep a
 
 This facilitates a comparison between spatio-temporal and solely spatial features which helps analyze the efficacy of various model architectures. The facial tracking module helps localize on the eyes and lips in order to keep track of how drowsy or distracted the students get. These modules are all combined in order to calculate an all-encompassing score which will further be used to provide real-time alerts as and when required.
 
+Given below is a sample grid of images which depict our algorithms' real-time performance and how the instant alerts are generated on screen while the user (student) is undergoing learning through an online environment.
+
+![grid](https://github.com/01pooja10/mitacs/blob/main/dependecies/gridim.png)
+
 
