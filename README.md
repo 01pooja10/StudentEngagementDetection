@@ -17,7 +17,7 @@ Given below is a sample grid of images which depict our algorithms' real-time pe
 ## Datasets used
 We have employed the DAiSEE dataset for training 2D and 3D convolutional neural networks as it had a myriad of settings and varied facial expressions which were categorised under appropriate classes. We further consolidated the labels into binary values by using an algorithm which measured how engaged the learners were while assigning equal importance to other labels: confusion, frustration and boredom.
 
-![grid]()
+![daiseegrid](https://github.com/01pooja10/StudentEngagementDetection/blob/main/dependecies/grid2.png)
 
 ## Installation and Quick Start
 To use the repo and run real-time inference on your local machine using a valid camera source, please follow the steps given below:
