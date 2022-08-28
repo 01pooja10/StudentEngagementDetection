@@ -1,6 +1,6 @@
 # Multimodal Video Analysis: Student Engagement Detection In Online Learning
 
-This github repository contains the implementation of the project which entails the detection of student's engagement levels in online learning.
+This github repository contains the implementation of the project which entails the detection of student's engagement levels in online learning using three different modalities which have all been evaluated separately and also integrated for enhancing accuracy of predictions.
 
 We provide a method to aggregate three different measures of a student’s engagement levels. These measures are presented as separate modules namely, the Behavioural Traits Analysis which localizes the learner's face and detects their emotions and Facial Tracking involves micro-sleep tracking and iris distraction detection in real-time.
 
@@ -14,4 +14,26 @@ Given below is a sample grid of images which depict our algorithms' real-time pe
 
 ![grid](https://github.com/01pooja10/mitacs/blob/main/dependecies/gridim.png)
 
+## Datasets used
+We have employed the DAiSEE dataset for training 2D and 3D convolutional neural networks as it had a myriad of settings and varied facial expressions which were categorised under appropriate classes. We further consolidated the labels into binary values by using an algorithm which measured how engaged the learners were while assigning equal importance to other labels: confusion, frustration and boredom.
 
+![grid]()
+
+## Installation and Quick Start
+To use the repo and run real-time inference on your local machine using a valid camera source, please follow the steps given below:
+
+- Cloning the repository: 
+
+        $ git clone https://github.com/01pooja10/StudentEngagementDetection
+        
+- Entering the directory: 
+
+        $ cd StudentEngagementDetection/
+        
+- Setting up your Python Environment with dependencies:
+
+        $ pip install -r requirements.txt
+
+- Running the file for inference:
+
+        $ python run.py
