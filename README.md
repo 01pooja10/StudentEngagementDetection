@@ -37,3 +37,22 @@ To use the repo and run real-time inference on your local machine using a valid 
 - Running the file for inference:
 
         $ python run.py
+        
+- The command below can be executed for integrating all facial tracking modules with the 3D ResNet model predictions on 3 consecutive frames:
+
+        $ python runmod.py
+
+This repository also contains the code files used to construct each module and the entire notebook used to train models on the DAiSEE dataset using a NVIDIA GPU and cuda on the PyTorch framework. The notebook can be accessed by downloading it and running it on a local GPU after ensuring that the command given below is successfully executed.
+
+        $ torch.cuda.get_device_name(0)
+        
+The different Python libraries used include:
+* PyTorch
+* OpenCV
+* Pillow
+* Scipy
+* Numpy
+* Matplotlib
+* Mediapipe
+
+These libraries along with their versions are listed in the requirements.txt file for reference purposes.
