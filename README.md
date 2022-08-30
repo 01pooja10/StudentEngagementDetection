@@ -19,6 +19,8 @@ We have employed the DAiSEE dataset for training 2D and 3D convolutional neural 
 
 ![daiseegrid](https://github.com/01pooja10/StudentEngagementDetection/blob/main/dependecies/grid2.png)
 
+Manually labeled images obtained from a locally sourced webcam were also employed to test the micro-sleep tracking and iris distraction detection modules to ensure proper performance. Around 100 images were used to test each algorithm to measure its real-time performance.
+
 ## Installation and Quick Start
 To use the repo and run real-time inference on your local machine using a valid camera source, please follow the steps given below:
 
@@ -55,4 +57,4 @@ The different Python libraries used include:
 * Matplotlib
 * Mediapipe
 
-These libraries along with their versions are listed in the requirements.txt file for reference purposes.
+These libraries along with their versions are listed in the requirements.txt file for reference purposes. Tjis repository can be run in 2 ways for real-time inference purposes and a training notebook attached provides more insight into how the various models were trained on the preprocessed image dataloaders.
