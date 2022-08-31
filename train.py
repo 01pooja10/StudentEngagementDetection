@@ -14,6 +14,8 @@ from torch.cuda.amp import autocast, GradScaler
 from torch.utils.data import Dataset, DataLoader
 from torchvision.models import resnet18, resnet34, vgg16_bn
 
+from code.
+
 #check cuda availability
 torch.cuda.get_device_name(0)
 
@@ -28,9 +30,10 @@ def ValidModels():
 import argparse
 parser = argparse.ArgumentParser()
 
+parser.add_argument("--bs", default=1, type=int, required=True, help="dataloader batch size")
 parser.add_argument("--lr", default=0.0001, type=int, required=True, help="learning rate value")
 parser.add_argument("--epochs", default=150, type=int, required=True, help="number of iterations")
-parser.add_argument("--frames", default=1, type=int, required=True, help="number of frames (2D/3D")
+parser.add_argument("--frames", default=1, type=int, required=True, help="number of frames (2D/3D)")
 parser.add_argument("--model_name", default="resnet183d", type=str, required=True, help="name of the model")
 
 args.parser.parse_args()
@@ -58,61 +61,7 @@ lab = F.one_hot(labs.to(torch.int64), num_classes=2)
 #print(labs.size())
 #print(imgs.size())
 
-def AllocateFrames(imgs):
-	
-	if args.frames == "1 frame":
-		fs = np.zeros((1531,128,128,3))
-		c = 0
-		for i in range(len(imgs)):  
-			fs[c,:,:,:] = imgs[i][5]
-			c += 1
-		fs = torch.FloatTensor(fs)
-		fs1 = fs[:1384]
-		return fs1
-
-	elif args.frames == "3 frames":
-		fs = np.zeros((1531,3,128,128,3))
-		c = 0
-		d = 0
-		for i in range(len(imgs)):
-			d = 0
-			for j in range(4,7):
-				fs[c,d,:,:,:] = imgs[i][j]
-				d += 1
-			c += 1
-		fs = torch.FloatTensor(fs)
-		fs3 = fs[:1384]
-		return fs3
-
-	elif args.frames == "5 frames":	
-		fs = np.zeros((1531,5,128,128,3))
-		c = 0
-		d = 0
-		for i in range(len(imgs)):
-			d = 0
-			for j in range(3,8):
-				#print('init', i,j)
-				#print(c,d)
-				fs[c,d,:,:,:] = imgs[i][j]
-				d += 1
-			c += 1
-		fs = torch.FloatTensor(fs)
-		fs5 = fs[:1384]
-		return fs5
-
-	elif args.frames == "7 frames":
-		fs = np.zeros((1531,7,128,128,3))
-		c = 0
-		d = 0
-		for i in range(len(imgs)):
-			d = 0
-			for j in range(3,10):
-				fs[c,d,:,:,:] = imgs[i][j]
-				d += 1
-			c += 1
-		fs = torch.FloatTensor(fs)
-		fs7 = fs[:1384]
-		return fs7
+frame_tensors = AllocateFrames(imgs)
 
 mod = args.model_name
 
@@ -140,3 +89,4 @@ elif mod ==  'vgg162d':
 	
 	
 optimizer = torch.optim.Adam(model.parameters(), lr = 0.00001)
+AMPTrain(model, dl, optimizer, args.epochs, args.bs, 2)
