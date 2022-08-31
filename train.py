@@ -59,13 +59,13 @@ with open(img_path,'rb') as fl1:
 with open(label_path,'rb') as fl2:
     labs = pickle.load(fl2)
 	
-	
-lab = F.one_hot(labs.to(torch.int64), num_classes=2)
-#print(labs.size())
-#print(imgs.size())
 
 frame_tensors = AllocateFrames(imgs)
+label_tensors = F.one_hot(labs.to(torch.int64), num_classes=2)
+#print(label_tensors.size())
+#print(frame_tensors.size())
 
+#Assign model
 mod = args.model_name
 
 if mod ==  'resnet503d':
@@ -95,5 +95,8 @@ optimizer = torch.optim.Adam(model.parameters(), lr = 0.00001)
 
 #optional pruning
 #model = PruneFunc(model)
+
+data = Daisee(frame_tensors, label_tensors)
+dl = DataLoader(data, batch_size = args.bs, shuffle=True, pin_memory=True)
 
 AMPTrain(model, dl, optimizer, args.epochs, args.bs, 2)
