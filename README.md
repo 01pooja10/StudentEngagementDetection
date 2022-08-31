@@ -14,7 +14,14 @@ Given below is a sample grid of images which depict our algorithms' real-time pe
 
 ![grid](https://github.com/01pooja10/mitacs/blob/main/dependecies/gridim.png)
 
-## Datasets used
+## Modules used
+
+1. **Facial Emotion Detection** - We make use of 2D convolutions and 3D convolutions thereby facilitating the involvement of a comparison between frame-by-frame sequential image classification and 3D (temporal) frame processing by passing both lone frames (1 frame) and a continuous sequence of frames as inputs. Hence, we construct a myriad of models which accept both spatial and temporal data. We also include the VGG-16 network architecture for comparing its performance with other residual networks of various depths.
+2. **Micro-sleep Tracking** - Whenever students display signs of sleepiness or drowsiness, our algorithm for detecting micro-sleep patterns and yawns accurately detects a deviation from the engaged state. This helps add an extra measure to ensuring that students stay actively focused throughout the lectures being taught online.
+3. **Iris Distraction Detection** - We propose the usage of a real-time iris monitoring algorithm for understanding the more nuanced aspects of how well a student is engaged during a lecture. The iris is usually centered at the camera when a concentrated student is involved in the online session.
+
+
+## Dataset used
 We have employed the DAiSEE dataset for training 2D and 3D convolutional neural networks as it had a myriad of settings and varied facial expressions which were categorised under appropriate classes. We further consolidated the labels into binary values by using an algorithm which measured how engaged the learners were while assigning equal importance to other labels: confusion, frustration and boredom.
 
 ![daiseegrid](https://github.com/01pooja10/StudentEngagementDetection/blob/main/dependecies/grid2.png)
