@@ -14,7 +14,10 @@ from torch.cuda.amp import autocast, GradScaler
 from torch.utils.data import Dataset, DataLoader
 from torchvision.models import resnet18, resnet34, vgg16_bn
 
-from code.
+from code.ampfunc import AMPTrain
+from code.frames import AllocateFrames
+from code.processdata import Daisee
+from code.prune import PruneFunc
 
 #check cuda availability
 torch.cuda.get_device_name(0)
@@ -89,4 +92,8 @@ elif mod ==  'vgg162d':
 	
 	
 optimizer = torch.optim.Adam(model.parameters(), lr = 0.00001)
+
+#optional pruning
+#model = PruneFunc(model)
+
 AMPTrain(model, dl, optimizer, args.epochs, args.bs, 2)
