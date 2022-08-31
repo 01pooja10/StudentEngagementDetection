@@ -59,6 +59,91 @@ spec = draw.DrawingSpec(thickness=1,circle_radius=1)
 
 cam = cv2.VideoCapture(0)
 
+
+def BehaviourAnalysis() -> str:
+	
+	path = 'E:/Conference_stuff/student/drive/net3d18_3f.pth'
+	cascp = 'E:/Conference_stuff/student/drive/cascade.xml'
+	facecasc = cv2.CascadeClassifier(cascp)
+	
+	resnet18_3f = torch.load(path)
+	model = r3d_18(pretrained=False)
+	model.fc = nn.Linear(512,2)
+	model.load_state_dict(resnet18_3f['model'])
+	model.eval()
+
+	frames = np.zeros((3,128,128,3))
+	flist = []
+	c1 = 0
+	status = ''
+	cam = cv2.VideoCapture(0)
+	while True:
+		
+		ret, fm = cam.read()
+		
+		if ret:
+			
+			frame = cv2.cvtColor(fm, cv2.COLOR_BGR2RGB)
+			frame = cv2.resize(frame, (128,128))
+			gr = cv2.cvtColor(fm, cv2.COLOR_BGR2GRAY)
+			faces = facecasc.detectMultiScale(gr, 1.1, 5)
+			for (x,y,w,h) in faces:
+				cv2.rectangle(fm, (x,y), (x+w, y+h), (255,255,255),2)
+			
+			transf = transforms.ToTensor()
+			framet = transf(frame)
+			framet = torch.permute(framet, (1,2,0))
+			
+			if c1 < 3:
+				#print(c)
+				frames[c1,:] = framet
+				c1 += 1
+			else:
+				c1 = 0
+				frames = np.zeros((3,128,128,3))
+				continue
+				
+				
+		flist.append(frames)
+		#print(torch.as_tensor(frames).size())
+		
+		#print(len(flist))
+		if len(flist)%30 == 0:
+			flt = torch.as_tensor(flist)
+			#print(flt.size())
+			with torch.no_grad():
+				out = model(flt.float())
+			#print(out)
+			out = torch.sigmoid(out)
+			#print(out[29])
+			ch = out[29]
+			print(ch)
+			#print(ch)
+			a = torch.argmax(ch)
+			print(a)
+			ch[ch == a] = 1
+			ch[ch < a] = 0
+			print(ch)
+			if a == 0:
+				print('Disengaged')
+				status = 'Disengaged'
+				
+			else:
+				print('Engaged')
+				status = 'Engaged'
+			flist = []	
+		cv2.putText(fm, status, (30,110), cv2.FONT_HERSHEY_COMPLEX, 0.4, (255,0,0), 1)
+		cv2.imshow('webcam', fm)
+		key = cv2.waitKey(1)
+		if key == ord('q'):
+			break
+		
+	cam.release()
+	cv2.destroyAllWindows()
+	return status
+
+
+
 def Landmarks(img,results,draw=False):
 	h, w = img.shape[:2]
 	coords = np.array([(int(f.x * w),int(f.y * h)) for f in results.multi_face_landmarks[0].landmark])
