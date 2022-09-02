@@ -31,25 +31,20 @@ Manually labeled images obtained from a locally sourced webcam were also employe
 ## Installation and Quick Start
 To use the repo and run real-time inference on your local machine using a valid camera source, please follow the steps given below:
 
-- Cloning the repository: 
+- Clone, enter, set up and run the files in the repository: 
 
         $ git clone https://github.com/01pooja10/StudentEngagementDetection
-        
-- Entering the directory: 
-
         $ cd StudentEngagementDetection/
-        
-- Setting up your Python Environment with dependencies:
-
         $ pip install -r requirements.txt
-
-- Running the file for inference:
-
         $ python run.py
         
 - The command below can be executed for integrating all facial tracking modules with the 3D ResNet model predictions on 3 consecutive frames:
 
         $ python runmod.py
+        
+- The command below can be executed for selecting convolutional models to be trained on custom/DAiSEE dataset:
+
+        $ python train.py  
 
 This repository also contains the code files used to construct each module and the entire notebook used to train models on the DAiSEE dataset using a NVIDIA GPU and cuda on the PyTorch framework. The notebook can be accessed by downloading it and running it on a local GPU after ensuring that the command given below is successfully executed.
 
