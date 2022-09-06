@@ -1,24 +1,25 @@
 # Multimodal Video Analysis: Student Engagement Detection In Online Learning
 
-This github repository contains the implementation of the project which entails the detection of student's engagement levels in online learning using three different modalities which have all been evaluated separately and also integrated for enhancing accuracy of predictions.
+This github repository contains the implementation of the project which entails the detection of student's engagement levels in online learning using four different modalities which have all been evaluated separately and also integrated for enhancing accuracy of predictions.
 
-We provide a method to aggregate three different measures of a student’s engagement levels. These measures are presented as separate modules namely, the Behavioural Traits Analysis which localizes the learner's face and detects their emotions and Facial Tracking involves micro-sleep tracking and iris distraction detection in real-time.
+We provide a method to aggregate three different measures of a student’s engagement levels. These measures are presented as separate modules namely, the Behavioural Traits Analysis which localizes the learner's face and detects their emotions while Facial Tracking involves micro-sleep tracking, yawn identification and iris distraction detection in real-time using a 3D facial mesh.
 
-![Flowchart](https://github.com/01pooja10/mitacs/blob/main/dependecies/Affectation%20state%20detection.png)
+![Flowchart](https://github.com/01pooja10/StudentEngagementDetection/blob/main/dependecies/newflow.png)
 
-Detecting the affectation state of the learner, their frequency of micro-sleep and yawns as well as tracking their iris to detect distraction are the main goals of our proposed work. The affectation states are identified using 3D and 2D Convolutional networks trained from scratch on the DaiSEE dataset and various models are employed to study which configuration works best in terms of accuracy and computational complexity. The algorithms for facial tracking rely on 3D landmarks obtained from the student's face and further tracks certain landmarks to obtain aspect ratios.
+Detecting the affective state (level of engagement) of the learner, their frequency of micro-sleep and yawns as well as tracking their iris to detect distraction are the main goals of our proposed work. The affective states are identified using 3D and 2D Convolutional networks trained from scratch on the DAiSEE dataset and various models are employed to study which configuration works best in terms of accuracy and computational complexity. The algorithms for facial tracking rely on 3D landmarks obtained from the student's face and further tracks certain landmarks to obtain respective aspect ratios.
 
 This facilitates a comparison between spatio-temporal and solely spatial features which helps analyze the efficacy of various model architectures. The facial tracking module helps localize on the eyes and lips in order to keep track of how drowsy or distracted the students get. These modules are all combined in order to calculate an all-encompassing score which will further be used to provide real-time alerts as and when required.
 
-Given below is a sample grid of images which depict our algorithms' real-time performance and how the instant alerts are generated on screen while the user (student) is undergoing learning through an online environment.
+Given below is a sample grid of images which depict our algorithms' real-time performance and how the instant alerts are generated on screen while the user (student) is undergoing learning process in an online environment.
 
 ![grid](https://github.com/01pooja10/mitacs/blob/main/dependecies/gridim.png)
 
 ## Modules used
 
 1. **Facial Emotion Detection** - We make use of 2D convolutions and 3D convolutions thereby facilitating the involvement of a comparison between frame-by-frame sequential image classification and 3D (temporal) frame processing by passing both lone frames (1 frame) and a continuous sequence of frames as inputs. Hence, we construct a myriad of models which accept both spatial and temporal data. We also include the VGG-16 network architecture for comparing its performance with other residual networks of various depths.
-2. **Micro-sleep Tracking** - Whenever students display signs of sleepiness or drowsiness, our algorithm for detecting micro-sleep patterns and yawns accurately detects a deviation from the engaged state. This helps add an extra measure to ensuring that students stay actively focused throughout the lectures being taught online.
-3. **Iris Distraction Detection** - We propose the usage of a real-time iris monitoring algorithm for understanding the more nuanced aspects of how well a student is engaged during a lecture. The iris is usually centered at the camera when a concentrated student is involved in the online session.
+2. **Micro-sleep Tracking** - Whenever students display signs of sleepiness or drowsiness, our algorithm for detecting micro-sleep patterns, observes and accurately tracks a deviation from the engaged state. This helps add an extra precautionary measure to ensuring that students stay actively focused throughout the lectures being taught online.
+3. **Yawn Identification** - Yawns are also passive indicators of lack of concentration and a decreasing attention span. So, we propose an algorithm which tracks the lips in real-time and calculates the aspect ratio by singling out the coordinates pertaining to the mid and end points of the upper and lower lips.
+4. **Iris Distraction Detection** - We propose the usage of a real-time iris monitoring algorithm for understanding the more nuanced aspects of how well a student is engaged during a lecture. The iris is usually centered at the camera when a concentrated student is involved in the online session.
 
 
 ## Dataset used
