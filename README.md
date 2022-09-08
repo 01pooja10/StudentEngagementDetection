@@ -33,6 +33,8 @@ We have employed the DAiSEE dataset for training 2D and 3D convolutional neural 
 
 Manually labeled images obtained from a locally sourced webcam were also employed to test the micro-sleep tracking and iris distraction detection modules to ensure proper performance. Around 100 images were used to test each algorithm to measure its real-time performance.
 
+![manual](https://github.com/01pooja10/StudentEngagementDetection/blob/main/dependecies/all3c.png)
+
 ## Installation and Quick Start
 To use the repo and run real-time inference on your local machine using a valid camera source, please follow the steps given below:
 
