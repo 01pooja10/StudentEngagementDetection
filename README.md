@@ -1,4 +1,4 @@
-# Multimodal Video Analysis: Student Engagement Detection In Online Learning
+# Real-time Student Engagement Monitoring Interface
 
 This github repository contains the implementation of the project which entails the detection of student's engagement levels in online learning using four different modalities which have all been evaluated separately and also integrated for enhancing accuracy of predictions.
 
