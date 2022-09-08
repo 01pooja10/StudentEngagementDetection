@@ -12,7 +12,7 @@ This facilitates a comparison between spatio-temporal and solely spatial feature
 
 This system follows a sequential flow: as and when the micro-sleep tracking algorithm detects drowsiness, the pipeline is halted and otherwise, the other three modules are set in action. The neural networks for facial emotion recognition module obtain a batch of 3 frames and the last frame from this set is processed by the iris distraction and yawn identification modules. The pipeline incurs some latency due to asynchronous processing and uniform allocation of resources.
 
-![flowchart2]()
+![flowchart2](https://github.com/01pooja10/StudentEngagementDetection/blob/main/dependecies/flow2.png)
 
 Given below is a sample grid of images which depict our algorithms' real-time performance and how the instant alerts are generated on screen while the user (student) is undergoing learning process in an online environment.
 
