@@ -4,11 +4,15 @@ This github repository contains the implementation of the project which entails 
 
 We provide a method to aggregate three different measures of a student’s engagement levels. These measures are presented as separate modules namely, the Behavioural Traits Analysis which localizes the learner's face and detects their emotions while Facial Tracking involves micro-sleep tracking, yawn identification and iris distraction detection in real-time using a 3D facial mesh.
 
-![Flowchart](https://github.com/01pooja10/StudentEngagementDetection/blob/main/dependecies/newflow.png)
+![Flowchart](https://github.com/01pooja10/StudentEngagementDetection/blob/main/dependecies/flow1re.png)
 
 Detecting the affective state (level of engagement) of the learner, their frequency of micro-sleep and yawns as well as tracking their iris to detect distraction are the main goals of our proposed work. The affective states are identified using 3D and 2D Convolutional networks trained from scratch on the DAiSEE dataset and various models are employed to study which configuration works best in terms of accuracy and computational complexity. The algorithms for facial tracking rely on 3D landmarks obtained from the student's face and further tracks certain landmarks to obtain respective aspect ratios.
 
 This facilitates a comparison between spatio-temporal and solely spatial features which helps analyze the efficacy of various model architectures. The facial tracking module helps localize on the eyes and lips in order to keep track of how drowsy or distracted the students get. These modules are all combined in order to calculate an all-encompassing score which will further be used to provide real-time alerts as and when required.
+
+This system follows a sequential flow: as and when the micro-sleep tracking algorithm detects drowsiness, the pipeline is halted and otherwise, the other three modules are set in action. The neural networks for facial emotion recognition module obtain a batch of 3 frames and the last frame from this set is processed by the iris distraction and yawn identification modules. The pipeline incurs some latency due to asynchronous processing and uniform allocation of resources.
+
+![flowchart2]()
 
 Given below is a sample grid of images which depict our algorithms' real-time performance and how the instant alerts are generated on screen while the user (student) is undergoing learning process in an online environment.
 
